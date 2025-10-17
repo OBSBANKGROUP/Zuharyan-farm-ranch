@@ -6,14 +6,12 @@ app = Flask(__name__, static_folder='')
 # Read SECRET_KEY from environment for any server-side usage
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', None)
 
-
-@app.before_first_request
-def log_startup_info():
-    # Log whether SECRET_KEY is set (do not print the value)
-    if app.config.get('SECRET_KEY'):
-        app.logger.info('SECRET_KEY is set in environment')
-    else:
-        app.logger.warning('SECRET_KEY not set; set SECRET_KEY in your environment')
+# Log startup info at import time. Some Flask runtimes may not support
+# `before_first_request` decorator; printing here ensures visibility in logs.
+if app.config.get('SECRET_KEY'):
+    print('SECRET_KEY is set in environment')
+else:
+    print('SECRET_KEY not set; set SECRET_KEY in your environment')
 
 
 @app.route('/')
