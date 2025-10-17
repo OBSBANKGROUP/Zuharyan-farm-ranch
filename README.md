@@ -24,10 +24,12 @@ On Render
 1. Create a new Web Service, link to this repository.
 2. Set Environment > SECRET_KEY to a strong random value.
 3. The service should auto-detect `render.yaml` or you can set the build and start commands manually:
+
    - Build Command: `pip install -r requirements.txt`
    - Start Command: `gunicorn app:app`
 
    Runtime and pip
+
    - Include `runtime.txt` to pin Python version (we added `python-3.11`).
    - The build command in `render.yaml` upgrades pip before installing requirements to avoid the "update pip" warning.
 
