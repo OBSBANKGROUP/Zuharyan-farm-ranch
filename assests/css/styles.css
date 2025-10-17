@@ -1,0 +1,657 @@
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+.brand {
+  background: linear-gradient(90deg, #f1c40f, #e67e22);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'Georgia', serif;
+  letter-spacing: 1px;
+  animation: shimmer 3s infinite linear;
+}
+
+.sub-brand {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+
+
+
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Arial', sans-serif; line-height: 1.6; }
+
+.site-header {
+  position: sticky; top: 0; background: #fff; padding: 1rem;
+  display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 1px solid #ddd; z-index: 10;
+}
+.nav a { margin: 0 0.75rem; text-decoration: none; color: #333; }
+.nav-toggle { font-size: 1.5rem; background: none; border: none; cursor: pointer; }
+
+/* Hamburger Menu */
+.nav {
+  display: none; /* Initially hide the menu */
+  flex-direction: column; /* Stack items vertically */
+  background-color: #2c3e50; /* Dark background for the menu */
+  position: absolute;
+  top: 60px; /* Position below the header */
+  right: 10px; /* Align to the right */
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav a {
+  color: #fff; /* White text for visibility */
+  text-decoration: none;
+  padding: 10px 15px;
+  display: block; /* Make each link take up the full width */
+  border-bottom: 1px solid #444; /* Add a separator between links */
+}
+
+.nav a:last-child {
+  border-bottom: none; /* Remove the separator for the last link */
+}
+
+.nav a:hover {
+  background-color: #34495e; /* Highlight on hover */
+}
+
+/* Show the menu when the button is toggled */
+.nav-toggle[aria-expanded="true"] + .nav {
+  display: flex; /* Display the menu in a vertical layout */
+}
+
+.hero {
+  position: relative; height: 90vh; display: flex; align-items: center; justify-content: center; color: #fff;
+}
+.hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; }
+.hero-content { text-align: center; background: rgba(0,0,0,0.4); padding: 2rem; border-radius: 8px; }
+.btn { display: inline-block; margin-top: 1rem; background: #333; color: #fff; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 5px; }
+
+
+.carousel-section {
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  max-width: 900px;
+  margin: 2rem auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.6s ease;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  position: relative;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 450px; /* Uniform height */
+  object-fit: cover;
+  display: block;
+}
+
+.caption {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 1.1rem;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+.carousel-btn:hover {
+  background: rgba(0,0,0,0.7);
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+
+
+
+
+
+/* Target by id and class so it styles even if the class was missed */
+#spa.agritourism,
+section#spa {
+  position: relative;
+  min-height: 60vh;
+  padding: clamp(3rem, 6vw, 6rem) 1.5rem;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+
+  /* Fallback color while image loads */
+  background-color: #2c3e50;
+
+  /* ✅ Use separate background-* properties (more reliable) */
+  /* If your CSS file is assets/css/styles.css use ../images/... */
+  background-image: url('../images/farm-view.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Dark overlay for readability */
+#spa.agritourism::before,
+section#spa::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(44, 62, 80, 0.65);
+  z-index: 1;
+}
+
+/* Content stays above the overlay */
+#spa .agri-content {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+#spa .agri-content h2 {
+  font-size: clamp(2rem, 3.5vw, 2.6rem);
+  color: #f1c40f;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+#spa .agri-content p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #f9f9f9;
+  margin-bottom: 1.25rem;
+}
+
+#spa .agri-content .btn {
+  background: #e67e22;
+  color: #fff;
+  padding: 0.85rem 1.6rem;
+  border-radius: 6px;
+  font-weight: 700;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+#spa .agri-content .btn:hover {
+  background: #d35400;
+  transform: translateY(-2px);
+}
+
+
+
+
+
+
+
+
+.experiences {
+  padding: 3rem 1rem;
+  text-align: center;
+  background: #f9f9f9;
+}
+
+.experiences h2 {
+  font-size: 2.2rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.experiences p {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.experience-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.experience-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.experience-card h3 {
+  color: #2c3e50;
+  margin: 1rem 0 0.5rem;
+}
+
+.experience-card p {
+  padding: 0 1rem 1rem;
+  color: #555;
+}
+
+.experience-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+
+.booking {
+  padding: 3rem 1rem;
+  background: #f9f9f9;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  max-width: 500px;
+  margin: 2rem auto;
+}
+
+.booking h2 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.form-msg {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(10px); }
+  20% { opacity: 1; transform: translateY(0); }
+  80% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+
+.form-msg {
+  margin-top: 1rem;
+  font-weight: bold;
+  opacity: 0;
+}
+
+
+
+
+
+.about {
+  max-width: 800px; /* Limit the width of the box */
+  margin: 2rem auto; /* Center the box horizontally and add vertical spacing */
+  padding: 2rem; /* Add padding inside the box */
+  background-color: #f9f9f9; /* Light background color for contrast */
+  border: 1px solid #ddd; /* Add a subtle border */
+  border-radius: 8px; /* Round the corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a soft shadow */
+}
+
+.about h1, .about h2 {
+  text-align: center; /* Center-align the headings */
+  color: #2c3e50; /* Darker color for headings */
+  margin-bottom: 1rem; /* Add spacing below headings */
+}
+
+.about p {
+  line-height: 1.8; /* Improve readability */
+  color: #555; /* Softer text color */
+  margin-bottom: 1rem; /* Add spacing between paragraphs */
+}
+
+
+.email-us {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.email-us h2 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.email-us p {
+  color: #555;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.email-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.email-form input[type="email"] {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.privacy-policy {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.privacy-policy a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.privacy-policy a:hover {
+  text-decoration: underline;
+}
+
+.email-form .btn {
+  background-color: #2c3e50;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.email-form .btn:hover {
+  background-color: #34495e;
+}
+
+
+.mission-vision {
+  background: linear-gradient(135deg, #2c3e50, #3498db);
+  color: #fff;
+  padding: 3rem 2rem;
+  text-align: center;
+  border-radius: 10px;
+  margin: 2rem auto;
+  max-width: 1000px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.mission-vision h2 {
+  font-size: 2.4rem;
+  margin-bottom: 2rem;
+}
+
+.mv-container {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.mv-card {
+  flex: 1;
+  min-width: 280px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.5s ease, background 0.3s ease;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.mv-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.mv-card h3 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  color: #f1c40f;
+}
+
+.mv-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #f9f9f9;
+}
+
+.mv-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #f1c40f;
+}
+
+/* Scroll Animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+
+/* Footer Styles */
+
+
+.site-footer {
+  background-color: #2c3e50;
+  color: #fff;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.footer-section h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  color: #f1c40f;
+}
+
+.footer-section p, 
+.footer-section li {
+  font-size: 0.95rem;
+  color: #ddd;
+  line-height: 1.6;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-link {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: #f1c40f;
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  margin-top: 2rem;
+  border-top: 1px solid #444;
+  padding-top: 1rem;
+  font-size: 0.85rem;
+  color: #bbb;
+  text-align: center;
+}
+
+
+
+.careers {
+  max-width: 900px;
+  margin: 2rem auto;
+  text-align: center;
+  padding: 2rem;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.careers h1 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.careers p {
+  color: #555;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.job-listings {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.job-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.job-card:hover {
+  transform: translateY(-5px);
+}
+
+.job-card h3 {
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.job-card p {
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+
+.application-form {
+  max-width: 700px;
+  margin: 2rem auto;
+  background: #f9f9f9;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.application-form h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+}
+
+.form-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.form-grid label {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.form-grid input,
+.form-grid select {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-top: 0.3rem;
+}
+
+.form-grid button {
+  background: #2c3e50;
+  color: #fff;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.form-grid button:hover {
+  background: #34495e;
+}
