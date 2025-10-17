@@ -7,6 +7,15 @@ app = Flask(__name__, static_folder='')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', None)
 
 
+@app.before_first_request
+def log_startup_info():
+    # Log whether SECRET_KEY is set (do not print the value)
+    if app.config.get('SECRET_KEY'):
+        app.logger.info('SECRET_KEY is set in environment')
+    else:
+        app.logger.warning('SECRET_KEY not set; set SECRET_KEY in your environment')
+
+
 @app.route('/')
 def index():
     # serve home.html as the index
@@ -20,6 +29,12 @@ def static_proxy(path):
         return send_from_directory('.', path)
     # fallback to 404
     abort(404)
+
+
+@app.route('/health')
+def health():
+    # Simple health endpoint for Render health checks
+    return {"status": "ok"}, 200
 
 
 if __name__ == '__main__':
