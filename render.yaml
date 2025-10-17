@@ -3,6 +3,7 @@ services:
     name: zuharyan-farm-website
     env: python
     plan: free
-  buildCommand: "pip install -r requirements.txt"
+  # ensure pip is up-to-date then install pinned requirements
+  buildCommand: "python -m pip install --upgrade pip && pip install -r requirements.txt"
   startCommand: "gunicorn app:app"
   healthCheckPath: "/health"

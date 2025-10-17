@@ -27,4 +27,8 @@ On Render
    - Build Command: `pip install -r requirements.txt`
    - Start Command: `gunicorn app:app`
 
+   Runtime and pip
+   - Include `runtime.txt` to pin Python version (we added `python-3.11`).
+   - The build command in `render.yaml` upgrades pip before installing requirements to avoid the "update pip" warning.
+
 Security note: keep your `SECRET_KEY` in Render's environment variables and never commit a `.env` file containing it to the repo.
