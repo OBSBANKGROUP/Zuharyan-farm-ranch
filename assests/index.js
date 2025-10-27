@@ -35,14 +35,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const nextBtn = document.querySelector(".next");
     const prevBtn = document.querySelector(".prev");
-    if (nextBtn) nextBtn.addEventListener("click", () => {
-      currentIndex = (currentIndex + 1) % slides.length;
-      updateCarousel();
-    });
-    if (prevBtn) prevBtn.addEventListener("click", () => {
-      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-      updateCarousel();
-    });
+    if (nextBtn)
+      nextBtn.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateCarousel();
+      });
+    if (prevBtn)
+      prevBtn.addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateCarousel();
+      });
 
     // Autoplay every 5 seconds
     setInterval(() => {
@@ -63,7 +65,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (bookedDates.includes(checkin) || bookedDates.includes(checkout)) {
         showMessage("Selected date is occupied. Try next month!", "red");
       } else {
-        showMessage("Booking unavailable! Please proceed another time.", "green");
+        showMessage(
+          "Booking unavailable! Please proceed another time.",
+          "green"
+        );
       }
     });
   }
@@ -86,10 +91,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (hasSecret) {
       console.info("SECRET_KEY is configured in the environment.");
     } else {
-      console.info("SECRET_KEY is not available in the browser environment (expected).");
+      console.info(
+        "SECRET_KEY is not available in the browser environment (expected)."
+      );
     }
   } catch (e) {
     // fail silently
   }
-
 });
