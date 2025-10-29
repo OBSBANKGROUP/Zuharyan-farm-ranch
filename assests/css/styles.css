@@ -75,7 +75,6 @@ body {
   background: transparent;
 }
 
-
 /* Hamburger Menu */
 .nav {
   display: none; /* Initially hide the menu */
@@ -131,6 +130,7 @@ body {
   .nav a {
     color: #333; /* dark links on desktop */
     padding: 0.25rem 0.5rem;
+    font-size: 0.95rem; /* slightly smaller so links fit on desktop */
     border-bottom: none;
   }
 }
