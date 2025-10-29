@@ -119,18 +119,21 @@ body {
     display: flex !important; /* show nav on desktop regardless of hidden attribute */
     position: static;
     flex-direction: row;
-    gap: 1rem;
+    gap: 0.6rem; /* reduced gap so links fit */
     background: transparent;
     padding: 0;
     box-shadow: none;
     border-radius: 0;
     align-items: center;
+    flex-wrap: nowrap; /* avoid wrapping to next line */
+    overflow: visible;
   }
 
   .nav a {
     color: #333; /* dark links on desktop */
-    padding: 0.25rem 0.5rem;
-    font-size: 0.95rem; /* slightly smaller so links fit on desktop */
+    padding: 0.15rem 0.4rem; /* tighter padding */
+    font-size: 0.88rem; /* reduced font-size so long labels fit */
+    white-space: nowrap; /* keep each link on one line */
     border-bottom: none;
   }
 }
