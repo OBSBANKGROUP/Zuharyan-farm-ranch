@@ -8,9 +8,55 @@ document.addEventListener("DOMContentLoaded", () => {
   if (navToggle && nav) {
     navToggle.addEventListener("click", () => {
       const expanded = navToggle.getAttribute("aria-expanded") === "true";
-      navToggle.setAttribute("aria-expanded", String(!expanded));
-      nav.hidden = expanded;
+      const willBeOpen = !expanded;
+      navToggle.setAttribute("aria-expanded", String(willBeOpen));
+      nav.hidden = !willBeOpen ? true : false;
+      // toggle a class to help with styling (optional)
+      navToggle.classList.toggle("open", willBeOpen);
+      // swap the icon between hamburger and X
+      try {
+        navToggle.textContent = willBeOpen ? "✕" : "☰";
+      } catch (e) {
+        // ignore if not writable
+      }
     });
+
+    // Close on outside click (mobile)
+    document.addEventListener("click", (e) => {
+      if (!nav.contains(e.target) && !navToggle.contains(e.target) && !nav.hidden) {
+        nav.hidden = true;
+        navToggle.setAttribute("aria-expanded", "false");
+        navToggle.classList.remove("open");
+        navToggle.textContent = "☰";
+      }
+    });
+
+    // Close on Escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !nav.hidden) {
+        nav.hidden = true;
+        navToggle.setAttribute("aria-expanded", "false");
+        navToggle.classList.remove("open");
+        navToggle.textContent = "☰";
+      }
+    });
+
+    // Keep nav state consistent on resize: show nav on desktop, hide on mobile
+    function handleResize() {
+      if (window.innerWidth >= 768) {
+        nav.hidden = false;
+        navToggle.setAttribute("aria-expanded", "false");
+        navToggle.classList.remove("open");
+        navToggle.textContent = "☰";
+      } else {
+        // keep it hidden by default on small screens
+        if (navToggle.getAttribute("aria-expanded") !== "true") nav.hidden = true;
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+    // run once to initialize
+    handleResize();
   }
 
   // SMOOTH SCROLL
