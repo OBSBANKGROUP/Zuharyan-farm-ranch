@@ -23,7 +23,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Close on outside click (mobile)
     document.addEventListener("click", (e) => {
-      if (!nav.contains(e.target) && !navToggle.contains(e.target) && !nav.hidden) {
+      if (
+        !nav.contains(e.target) &&
+        !navToggle.contains(e.target) &&
+        !nav.hidden
+      ) {
         nav.hidden = true;
         navToggle.setAttribute("aria-expanded", "false");
         navToggle.classList.remove("open");
@@ -50,7 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
         navToggle.textContent = "☰";
       } else {
         // keep it hidden by default on small screens
-        if (navToggle.getAttribute("aria-expanded") !== "true") nav.hidden = true;
+        if (navToggle.getAttribute("aria-expanded") !== "true")
+          nav.hidden = true;
       }
     }
 
